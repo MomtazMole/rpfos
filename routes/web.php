@@ -24,7 +24,10 @@ use GuzzleHttp\Middleware;
 |
 */
 
-Route::get('/home',[FrontendHomeController::class,'home'])->name('front.home');
+Route::get('/',[FrontendHomeController::class,'home'])->name('front.home');
+
+
+Route::group(['prefix'=>'admin'],function(){
 
 Route::get('/login',[UserController::class,'loginform'])->name('admin.login');
 Route::post('/login-form-post', [UserController::class, 'loginPost'])->name('hello');
@@ -54,5 +57,6 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/payment/list',[PaymentController::class,'list'])->name('Payment.list');
     Route::get('/payment/form',[PaymentController::class,'form'])->name('Payment.form');
     Route::post('/payment/store',[PaymentController::class,'store'])->name('Payment.store');
+});
 });
 
