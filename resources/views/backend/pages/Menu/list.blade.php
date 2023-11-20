@@ -9,6 +9,7 @@
   <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col">food Image</th>
       <th scope="col">food name</th>
       <th scope="col">id</th>
       <th scope="col">price</th>
@@ -18,6 +19,7 @@
 
     <tr>
       <th scope="row">1</th>
+      <td>photo</td>
       <td>abc</td>
       <td>Opq</td>
       <td>@mdo</td>

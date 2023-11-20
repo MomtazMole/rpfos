@@ -19,12 +19,27 @@
                         </li>
                      </ul>
                   </div>
-                  <div class="form-group">
-                     <textarea class="update_mail" placeholder="Your Email" rows="5" id="comment" name="Your Email"></textarea>
-                     <div class="subscribe_bt"><a href="#"><img src="{{url('frontend/')}}/images/teligram-icon.png"></a></div>
-                  </div>
+                  
                </div>
             </div>
          </div>
       </div>
       <!-- footer section end -->
+      <!-- copyright section start -->
+      <div class="copyright_section">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-6 col-sm-12">
+                  <p class="copyright_text">2023 All Rights Reserved. Design by Momtaz Mole</p>
+               </div>
+               <div class="col-lg-6 col-sm-12">
+                  <div class="footer_social_icon">
+                     <ul>
+                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>

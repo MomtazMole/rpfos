@@ -3,11 +3,15 @@
         <div class="nav">
             <div class="sb-sidenav-menu-heading">Core</div>
             <a class="nav-link" href="{{route('Admin_List')}}">
-                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-duotone fa-house"></i></div>
                 Admin
             </a>
-            <a class="nav-link" href="{{route('Customer.list')}}">
+            <a class="nav-link" href="{{route('Category.list')}}">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                Category
+            </a>
+            <a class="nav-link" href="{{route('Customer.list')}}">
+                <div class="sb-nav-link-icon"><i class="fa-sharp fa-light fa-user"></i></div>
                 Customer
             </a>
             <a class="nav-link" href="{{route('Menu.list')}}">

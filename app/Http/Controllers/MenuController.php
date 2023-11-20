@@ -19,7 +19,7 @@ class MenuController extends Controller
     public function store(Request $request)
     {
     //dd($request->all());
-        
+    
 
         return redirect()->back();
     }

@@ -35,7 +35,7 @@ class AdminController extends Controller
             'name' => $request->user_name,
             'role' => $request->role,
             'email' => $request->email,
-            'photo' => $request->photo,
+            'photo' => $file_name,
             'password' => $request->password,
         ]);
 

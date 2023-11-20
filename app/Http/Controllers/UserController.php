@@ -33,7 +33,7 @@ class UserController extends Controller
         $login = auth()->attempt($credentials);
         if($login) {
             // dd('hello');
-            return redirect()->route('home');
+            return redirect()->route('back.home');
             
         } else{
             return redirect()->back();

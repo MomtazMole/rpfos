@@ -21,14 +21,16 @@
             @foreach($user_data as $item)
             <tr>
                 <th scope="row">{{$item->id}}</th>
-                <td>{{$item->photo}}</td>
+                <td>
+                     <img width="20%" src="{{url('uploads/'.$item->photo)}}" alt="">
+                </td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->role}}</td>
                 <td>{{$item->email}}</td>
                 <td>
                     <a href="#" type="button" class="btn btn-primary">view</a>
-                    <a type="button" class="btn btn-success">update</a>
-                    <a type="button" class="btn btn-danger">delete</a>
+                    <a href="#" type="button" class="btn btn-success">update</a>
+                    <a href="#" type="button" class="btn btn-danger">delete</a>
                 </td>
             </tr>
             @endforeach

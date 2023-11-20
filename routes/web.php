@@ -2,7 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\CategoryController as BackendCategoryController;
+use App\Http\Controllers\Backend;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\frontend\CustomerController as FrontendCustomerController;
+use App\Http\Controllers\frontend\MenuController as FrontendMenuController;
 use App\Http\Controllers\FrontendHomeController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\MenuController;
@@ -25,22 +30,44 @@ use GuzzleHttp\Middleware;
 */
 
 Route::get('/',[FrontendHomeController::class,'home'])->name('front.home');
+Route::get('/login',[FrontendHomeController::class,'loginform'])->name('front.login');
+Route::post('/login/post',[FrontendHomeController::class, 'loginPostt'])->name('front.login.post');
+
+
+Route::get('/registration',[FrontendCustomerController::class, 'registration'])->name('customer.registration');
+Route::post('/registration',[FrontendCustomerController::class, 'store'])->name('customer.store');
+
+Route::get('/menu',[FrontendMenuController::class,'menu'])->name('Menu.List');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/profile', [FrontendCustomerController::class,'profile'])->name('profile.view');
+    Route::get('/logout', [FrontendCustomerController::class,'logout'])->name('customer.logout');
+});
+
+
+
+
 
 
 Route::group(['prefix'=>'admin'],function(){
 
 Route::get('/login',[UserController::class,'loginform'])->name('admin.login');
-Route::post('/login-form-post', [UserController::class, 'loginPost'])->name('hello');
+Route::post('/login-form-post', [UserController::class, 'loginPost'])->name('login.post');
 Route::get('/logout',[UserController::class,'logout'])->name('logout');
 
 
 Route::group(['middleware'=>'auth'], function(){
 
-    Route::get('/',[MasterController::class,'home'])->name('home');
+    Route::get('/home',[MasterController::class,'home'])->name('back.home');
 
-    Route::get('/admin',[AdminController::class,'admin'])->name('Admin_List');
+    Route::get('/',[AdminController::class,'admin'])->name('Admin_List');
     Route::get('/admin/form',[AdminController::class,'adminform'])->name('Admin.form');
     Route::post('/admin/store',[AdminController::class,'adminstore'])->name('Admin.store');
+
+    
+    Route::get('/category/list',[CategoryController::class,'list'])->name('Category.list');
+    Route::get('/category/form',[CategoryController::class,'form'])->name('Category.form');
+    Route::post('/category/store',[CategoryController::class,'store'])->name('Category.store');
     
     Route::get('/customer/list',[CustomerController::class,'list'])->name('Customer.list');
     Route::get('/customer/form',[CustomerController::class,'form'])->name('Customer.form');

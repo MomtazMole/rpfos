@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+@notifyCss
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -35,6 +36,7 @@
         <div id="layoutSidenav_content">
             <!-- start content -->
             <main>
+            @include('notify::components.notify')
                 @yield('content')               
             </main>
             <!-- end content -->
@@ -57,6 +59,7 @@
     <script src="{{url('/')}}/assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="{{url('/')}}/js/datatables-simple-demo.js"></script>
+    @notifyJs
 </body>
 
 </html>
