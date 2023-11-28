@@ -32,12 +32,24 @@ class FrontendHomeController extends Controller
         $credentials = $request->only('email', 'password');
         $login = auth()->attempt($credentials);
         if($login) {
-            // dd('hello');
+             //dd('hello');
             return redirect()->route('front.home');
             
         } else{
             return redirect()->back();
 
         }
+        
        
-    }}
+    }
+    public function about()
+    {
+        //dd('hello');
+        return view('frontend.pages.home.about');
+    }
+    public function contact()
+    {
+        //dd('contact');
+        return view('frontend.pages.home.contact');
+    }
+}

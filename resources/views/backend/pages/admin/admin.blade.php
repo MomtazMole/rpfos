@@ -28,9 +28,9 @@
                 <td>{{$item->role}}</td>
                 <td>{{$item->email}}</td>
                 <td>
-                    <a href="#" type="button" class="btn btn-primary">view</a>
-                    <a href="#" type="button" class="btn btn-success">update</a>
-                    <a href="#" type="button" class="btn btn-danger">delete</a>
+                    <a href="{{route('Admin.view',$item->id)}}" type="button" class="btn btn-primary">view</a>
+                    <a href="{{route('Admin.edit',$item->id)}}" type="button" class="btn btn-success">update</a>
+                    <a href="{{route('Admin.delete',$item->id)}}" type="button" class="btn btn-danger">delete</a>
                 </td>
             </tr>
             @endforeach

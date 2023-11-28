@@ -8,6 +8,6 @@ class MasterController extends Controller
 {
     public function home()
     {
-        return view('backend.master');
+        return view('backend.pages.admin.homeadmin');
     }
 }

@@ -12,7 +12,7 @@
       @csrf
       <div class="form-group">
         <label for="name">Name:</label>
-        <input name="name" type="text" class="form-control" id="name" placeholder="Enter your name">
+        <input required name="name" type="text" class="form-control" id="name" placeholder="Enter your name">
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>

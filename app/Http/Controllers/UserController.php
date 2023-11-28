@@ -46,4 +46,8 @@ class UserController extends Controller
         auth()->logout();
         return redirect()->route('admin.login');
     }
+    public function profile()
+    {
+        return view('backend.pages.profile.profile');
+    }
 }

@@ -8,10 +8,12 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">food name</th>
-      <th scope="col">id</th>
-      <th scope="col">price</th>
+      <th scope="col">Sl No.</th>
+      <th scope="col">Customer id</th>
+      <th scope="col">Order id</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Payment Method</th>
+      <th scope="col">Status</th>
     </tr>
   </thead>
   <tbody>

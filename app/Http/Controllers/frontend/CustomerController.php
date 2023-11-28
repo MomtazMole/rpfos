@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\frontend;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -14,14 +15,25 @@ class CustomerController extends Controller
     }
    public function store(Request $request){
      //dd($request->all());
-
-
-    //notify()->success('registration successful');
-    return redirect()->back();
+     $file_name = null;
+     if ($request->hasfile('photo')) {
+         $file = $request->file('photo');
+         $file_name = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
+         $file->storeAs('uploads/', $file_name);
+     }
+     User::create([
+         'name' => $request->name,
+         'role' => 'customer',
+         'email' => $request->email,
+         'photo' => $file_name,
+         'password' => $request->password,
+     ]);
+    notify()->success('registration successful');
+    return redirect()->route('front.home');
 }
     public function logout(){
       auth()->logout();
-      notify()->success('Logout Success');
+      notify()->success('Successfully Logout');
       return redirect()->route('front.home');
     }
     public function profile(){
