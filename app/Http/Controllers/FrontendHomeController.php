@@ -52,4 +52,6 @@ class FrontendHomeController extends Controller
         //dd('contact');
         return view('frontend.pages.home.contact');
     }
+    
+    
 }

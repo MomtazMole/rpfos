@@ -36,6 +36,9 @@ Route::post('/login/post',[FrontendHomeController::class, 'loginPostt'])->name('
 Route::get('/about',[FrontendHomeController::class,'about'])->name('About.list');
 Route::get('/contact',[FrontendHomeController::class,'contact'])->name('Contact.list');
 Route::get('/cart-view',[CartController::class,'cartview'])->name('Cart.view');
+Route::get('/add-to-order/{id}',[CartController::class,'addtoorder'])->name('add.to.order');
+Route::get('/view-details/{id}',[CartController::class,'viewdetails'])->name('view.details');
+Route::get('/search-menu',[FrontendMenuController::class,'searchmenu'])->name('search.menu');
 
 
 

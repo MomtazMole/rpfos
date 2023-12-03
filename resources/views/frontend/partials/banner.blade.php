@@ -1,5 +1,5 @@
 <!-- banner section start --> 
-<!--<div class="banner_section layout_padding">
+<div class="banner_section layout_padding">
             <div class="container">
                <div id="banner_slider" class="carousel slide" data-ride="carousel">
                   <div class="carousel-inner">
