@@ -22,6 +22,10 @@
     <input name="photo" type="file"class="form-control" id="exampleFormControlphoto">
   </div>
   <div class="form-group">
+    <label for="exampleFormControlinput2">price details</label>
+    <input name="price details"input type="text"class="form-control" id="exampleFormControlinput1">
+  </div>
+  <div class="form-group">
     <label for="exampleFormControlinput2">Others</label>
     <input name="info"input type="text"class="form-control" id="exampleFormControlinput1">
   </div>

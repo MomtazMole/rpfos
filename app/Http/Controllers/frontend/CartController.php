@@ -74,4 +74,42 @@ class CartController extends Controller
 
         return view('frontend.pages.cartview.cartview');
     }
+    public function checkout(){
+        return view('frontend.pages.cart.checkout');
+    }
+    public function orderPlace(Request $request){
+        // dd($request->all());
+    
+            $cart=session()->get('vcart')
+    
+            $order=Order::create([
+                'user_id'=>auth()->user()->id,
+                'menu_id'=>$menu_id,
+                'status'=>'pending',
+                'total_price'=>array_sum(array_column($cart,'subtotal')),
+                'address'=>$request->address,
+                'receiver_mobile'=>$request->phone_number,
+                'receiver_name'=>$request->name,
+                'receiver_email'=>$request->email_address,
+ 
+            ]);
+    
+            // dd($cart);
+            //create order details
+            foreach($cart as $key=> $item)
+            {
+                OrderDetails::create([
+                    'order_id'=>$order->id,
+                    // 'product_id'=>$key,
+                    'product_id'=>$item['id'],
+                    'quantity'=>$item['quantity'],
+                    'subtotal'=>$item['subtotal'],
+                ]);
+            }
+    
+            session()->forget('vcart');
+            notify()->success('Order placed success.');
+            return redirect()->back();
+       
+    }
 }

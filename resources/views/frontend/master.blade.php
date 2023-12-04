@@ -36,7 +36,7 @@
 <body>
 
    @include('frontend.partials.header')
-
+   @include('frontend.partials.banner')
    <main>
       @include('notify::components.notify')
 

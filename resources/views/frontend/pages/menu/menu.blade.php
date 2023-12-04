@@ -10,6 +10,8 @@
       <div class="card-body">
         <h5 class="card-title">{{$menu->name}}</h5>
         <p class="card-text">{{$menu->price}}</p>
+        <p class="card-text">{{$menu->type}}</p>
+        <p class="card-text">{{$menu->others}}</p>
         <a href="{{route('view.details', $menu->id)}}" class="btn details px-auto">view details</a>
         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('add.to.order',$menu->id)}}">Add to order</a>
         </div>

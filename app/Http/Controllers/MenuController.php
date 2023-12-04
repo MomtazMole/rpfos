@@ -37,4 +37,34 @@ class MenuController extends Controller
 
          return redirect()->back();
     }
+    public function menudelete($id){
+        $Menu=Menu::find($id)->delete();
+        return redirect()->back();
+    }
+    public function menuedit($id){
+        $Menu=Menu::find($id);
+        return view('backend.pages.menu.update', compact('Menu'));
+    }
+    public function menuupdate(Request $request, $id){
+        $Menu=Menu::find($id);
+
+
+        $file_name = $Menu->photo;
+        if ($request->hasfile('photo')) {
+            $file = $request->file('photo');
+            $file_name = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('uploads/', $file_name);
+        }
+
+        $Menu->update([
+            'name'=>$request->food_name,
+            'type'=>$request->food_type,
+            'photo'=>$file_name,
+        ]);
+        return redirect()->route('Menu.list');
+    }
+    public function menuview($id){
+        $Menu=Menu::find($id);
+        return view('backend.pages.menu.view', compact('Menu'));
+    }
 }

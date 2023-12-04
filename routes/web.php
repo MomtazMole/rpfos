@@ -35,18 +35,19 @@ Route::get('/login',[FrontendHomeController::class,'loginform'])->name('front.lo
 Route::post('/login/post',[FrontendHomeController::class, 'loginPostt'])->name('front.login.post');
 Route::get('/about',[FrontendHomeController::class,'about'])->name('About.list');
 Route::get('/contact',[FrontendHomeController::class,'contact'])->name('Contact.list');
+
 Route::get('/cart-view',[CartController::class,'cartview'])->name('Cart.view');
+Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
+Route::post('/order-place',[CartController::class, 'orderPlace'])->name('order.place');
 Route::get('/add-to-order/{id}',[CartController::class,'addtoorder'])->name('add.to.order');
 Route::get('/view-details/{id}',[CartController::class,'viewdetails'])->name('view.details');
+
 Route::get('/search-menu',[FrontendMenuController::class,'searchmenu'])->name('search.menu');
-
-
 
 Route::get('/registration',[FrontendCustomerController::class, 'registration'])->name('customer.registration');
 Route::post('/registration',[FrontendCustomerController::class, 'store'])->name('customer.store');
 
 Route::get('/menu',[FrontendMenuController::class,'menu'])->name('Menu.List');
-
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile', [FrontendCustomerController::class,'profile'])->name('profile.view');
     Route::get('/logout', [FrontendCustomerController::class,'logout'])->name('customer.logout');
@@ -89,6 +90,10 @@ Route::group(['middleware' => 'CheckAdmin'], function(){
     Route::get('/menu/list',[MenuController::class,'list'])->name('Menu.list');
     Route::get('/menu/form',[MenuController::class,'form'])->name('Menu.form');
     Route::post('/menu/store',[MenuController::class,'store'])->name('Menu.store');
+    Route::get('/delete/{id}',[MenuController::class,'menudelete'])->name('Menu.delete');
+    Route::get('/edit/{id}',[MenuController::class,'menuedit'])->name('Menu.edit');
+    Route::put('/update/{id}',[MenuController::class,'menuupdate'])->name('Menu.update');
+    Route::get('/view/{id}',[MenuController::class,'menuview'])->name('Menu.view');
 
     Route::get('/order/list',[OrderController::class,'list'])->name('Order.list');
     Route::get('/order/form',[OrderController::class,'form'])->name('Order.form');
