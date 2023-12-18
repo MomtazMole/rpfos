@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class MasterController extends Controller
 {
     public function home()
     {
-        return view('backend.pages.admin.homeadmin');
+        $order=Order::paginate(10);
+        return view('backend.pages.admin.homeadmin',compact('order'));
     }
 }

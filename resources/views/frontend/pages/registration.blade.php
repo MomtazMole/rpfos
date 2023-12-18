@@ -15,6 +15,10 @@
         <input required name="name" type="text" class="form-control" id="name" placeholder="Enter your name">
       </div>
       <div class="form-group">
+        <label for="phone_number">Phone Number:</label>
+        <input required name="number" type="Number" class="form-control" id="number" placeholder="Enter your number">
+      </div>
+      <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input required name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
       </div>

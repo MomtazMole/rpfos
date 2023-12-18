@@ -13,11 +13,19 @@
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home</a>
+                  <a class="nav-link" href="{{route('front.home')}}">Home</a>
                </li>
                <li class="nav-item active">
                   <a class="nav-link" href="{{route('Menu.List')}}">Menu</a>
                </li>
+               <div class="form-group">
+                  <select class="form-control">
+                     <option>Category</option>
+                     @foreach($headerCategory as $item)
+                     <option value="admin">Admin</option>
+                     @endforeach
+                  </select>
+               </div>
                <li class="nav-item">
                   <a class="nav-link" href="{{route('About.list')}}">About</a>
                </li>
@@ -26,21 +34,22 @@
                   <a class="nav-link" href="{{route('Contact.list')}}">Contact</a>
                </li>
 
+
                <li class="nav-item col-3">
-               <a class="btn btn-outline-dark" href="{{route('Cart.view')}}">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            
-                        </button>
-                    </form>
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">
-                                @if(session()->has('vcart'))
-                                    {{ count(session()->get('vcart')) }}
-                                @else
-                                0
-                                @endif
-                            </span>
-                        </a>
+                  <a class="btn btn-outline-dark" href="{{route('Cart.view')}}">
+                     <i class="bi-cart-fill me-1"></i>
+                     Cart
+
+                     </button>
+                     </form>
+                     <span class="badge bg-dark text-white ms-1 rounded-pill">
+                        @if(session()->has('vcart'))
+                        {{ count(session()->get('vcart')) }}
+                        @else
+                        0
+                        @endif
+                     </span>
+                  </a>
                </li>
 
             </ul>
@@ -53,7 +62,7 @@
                      @endguest
                      @auth
                      <a href="{{route('customer.logout')}}"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Logout</a> |
-                     <a href="{{route('profile.view')}}"> {{auth()->user()->name}} ({{ auth()->user()->role }})</a>
+                     <a href="{{route('User.profile.view')}}"> {{auth()->user()->name}} ({{ auth()->user()->role }})</a>
                      @endauth
                   </ul>
                </div>

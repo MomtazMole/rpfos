@@ -11,11 +11,7 @@ class PaymentController extends Controller
         //dd('hello');
         return view('backend.Pages.payment.list');
     }
-    public function form()
-    {
-        // dd('hello');
-        return view('backend.Pages.payment.form');
-    }
+   
     public function store(Request $request)
     {
     //dd($request->all());

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\frontend;
+use session;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\frontend;
+use App\Http\Controllers\Controller;
 
 class CustomerController extends Controller
 {
@@ -33,6 +34,7 @@ class CustomerController extends Controller
 }
     public function logout(){
       auth()->logout();
+      session()->forget('vcart');
       notify()->success('Successfully Logout');
       return redirect()->route('front.home');
     }

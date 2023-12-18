@@ -28,7 +28,7 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-
+        // dd($request);
 
         $validate=Validator::make($request->all(),
         [
@@ -43,15 +43,22 @@ class CategoryController extends Controller
         }
         
             Category::create([
-                'name'=>$request->category_name,
+                'category'=>$request->category_name,
                 'description'=>$request->category_description
             ]);
 
-            return redirect()->back();
+            return redirect()->route('Category.list');
 
         
 
     }
+     
+    public function feedbacklist()
+    {
+        //dd('sjhdjhg');
+       return view('backend.pages.feedback.list');
+    }
+
 
 
 }

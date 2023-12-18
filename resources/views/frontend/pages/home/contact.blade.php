@@ -1,1 +1,1 @@
-<h1>contact bdj</h1>
+@include('frontend.partials.footer')

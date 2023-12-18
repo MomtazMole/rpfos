@@ -4,7 +4,7 @@
             <div class="row">
                <div class="col-md-12">
                   <h1 class="address_text">Address</h1>
-                  <p class="footer_text">house no-10,road-10,sector-04</p>
+                  <p class="footer_text">House no-10,Road-10,Sector-04</p>
                   <div class="location_text">
                      <ul>
                         <li>

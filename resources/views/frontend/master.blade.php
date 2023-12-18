@@ -3,6 +3,12 @@
 
 <head>
    @notifyCss
+   <style>
+      .notify{
+         z-index: 1000000;
+         
+      }
+   </style>
    <!-- basic -->
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +42,7 @@
 <body>
 
    @include('frontend.partials.header')
-   @include('frontend.partials.banner')
+  
    <main>
       @include('notify::components.notify')
 
@@ -60,6 +66,17 @@
    <script src="{{url('/frontend/')}}/js/jquery.mCustomScrollbar.concat.min.js"></script>
    <script src="{{url('/frontend/')}}/js/custom.js"></script>
    @notifyJs
+   <script>
+    (function (window, document) {
+        var loader = function () {
+            var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
+            script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+            tag.parentNode.insertBefore(script, tag);
+        };
+
+        window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+    })(window, document);
+</script>
 </body>
 
 </html>

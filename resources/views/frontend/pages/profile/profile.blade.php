@@ -79,7 +79,14 @@
                                                 {{ auth()->user()->role }}
                                             </div>
                                         </div>
-                                        
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">phone_number</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                {{ auth()->user()->phone_number}}
+                                            </div>
+                                        </div>
                                         
                                     </div>
                                 </div>

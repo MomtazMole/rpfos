@@ -14,7 +14,9 @@ use App\Http\Controllers\MasterController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\UserController;
+use App\Models\Category;
 use App\Models\User;
 use Faker\Provider\ar_EG\Payment;
 use GuzzleHttp\Middleware;
@@ -30,27 +32,43 @@ use GuzzleHttp\Middleware;
 |
 */
 
-Route::get('/',[FrontendHomeController::class,'home'])->name('front.home');
-Route::get('/login',[FrontendHomeController::class,'loginform'])->name('front.login');
-Route::post('/login/post',[FrontendHomeController::class, 'loginPostt'])->name('front.login.post');
-Route::get('/about',[FrontendHomeController::class,'about'])->name('About.list');
-Route::get('/contact',[FrontendHomeController::class,'contact'])->name('Contact.list');
+Route::get('/', [FrontendHomeController::class, 'home'])->name('front.home');
+Route::get('/login', [FrontendHomeController::class, 'loginform'])->name('front.login');
+Route::post('/login/post', [FrontendHomeController::class, 'loginPostt'])->name('front.login.post');
+Route::get('/about', [FrontendHomeController::class, 'about'])->name('About.list');
+Route::get('/contact', [FrontendHomeController::class, 'contact'])->name('Contact.list');
 
-Route::get('/cart-view',[CartController::class,'cartview'])->name('Cart.view');
-Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
-Route::post('/order-place',[CartController::class, 'orderPlace'])->name('order.place');
-Route::get('/add-to-order/{id}',[CartController::class,'addtoorder'])->name('add.to.order');
-Route::get('/view-details/{id}',[CartController::class,'viewdetails'])->name('view.details');
+Route::get('/cart-view', [CartController::class, 'cartview'])->name('Cart.view');
+Route::get('/fresh-cart', [CartController::class, 'fresh_cart'])->name('Fresh_Cart');
+Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::post('/order-place', [CartController::class, 'orderPlace'])->name('order.place');
+Route::get('/add-to-order/{id}', [CartController::class, 'addtoorder'])->name('add.to.order');
+Route::get('/view-details/{id}', [CartController::class, 'viewdetails'])->name('view.details');
 
-Route::get('/search-menu',[FrontendMenuController::class,'searchmenu'])->name('search.menu');
+Route::get('/search-menu', [FrontendMenuController::class, 'searchmenu'])->name('search.menu');
 
-Route::get('/registration',[FrontendCustomerController::class, 'registration'])->name('customer.registration');
-Route::post('/registration',[FrontendCustomerController::class, 'store'])->name('customer.store');
+Route::get('/registration', [FrontendCustomerController::class, 'registration'])->name('customer.registration');
+Route::post('/registration', [FrontendCustomerController::class, 'store'])->name('customer.store');
 
-Route::get('/menu',[FrontendMenuController::class,'menu'])->name('Menu.List');
+Route::get('/menu', [FrontendMenuController::class, 'menu'])->name('Menu.List');
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/profile', [FrontendCustomerController::class,'profile'])->name('profile.view');
-    Route::get('/logout', [FrontendCustomerController::class,'logout'])->name('customer.logout');
+    Route::post('/order-place', [CartController::class, 'orderPlace'])->name('order.place');
+    Route::get('/profile', [FrontendCustomerController::class, 'profile'])->name('User.profile.view');
+    Route::get('/logout', [FrontendCustomerController::class, 'logout'])->name('customer.logout');
+    // SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
+
 });
 
 
@@ -58,51 +76,47 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-Route::group(['prefix'=>'admin'],function(){
+Route::group(['prefix' => 'admin'], function () {
 
-Route::get('/login',[UserController::class,'loginform'])->name('admin.login');
-Route::post('/login-form-post', [UserController::class, 'loginPost'])->name('login.post');
+    Route::get('/login', [UserController::class, 'loginform'])->name('admin.login');
+    Route::post('/login-form-post', [UserController::class, 'loginPost'])->name('login.post');
 
-Route::group(['middleware'=>'auth'], function(){
-Route::group(['middleware' => 'CheckAdmin'], function(){
+    Route::group(['middleware' => 'auth'], function () {
+        Route::group(['middleware' => 'CheckAdmin'], function () {
+            Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+            Route::get('/home', [MasterController::class, 'home'])->name('back.home');
+            Route::get('/profile', [UserController::class, 'profile'])->name('profile.view');
 
-    Route::get('/logout',[UserController::class,'logout'])->name('logout');
-    Route::get('/home',[MasterController::class,'home'])->name('back.home');
-    Route::get('/profile',[UserController::class,'profile'])->name('profile.view');
-
-    Route::get('/',[AdminController::class,'admin'])->name('Admin_List');
-    Route::get('/form',[AdminController::class,'adminform'])->name('Admin.form');
-    Route::post('/store',[AdminController::class,'adminstore'])->name('Admin.store');
-    Route::get('/delete/{id}',[AdminController::class,'admindelete'])->name('Admin.delete');
-    Route::get('/edit/{id}',[AdminController::class,'adminedit'])->name('Admin.edit');
-    Route::put('/update/{id}',[AdminController::class,'adminupdate'])->name('Admin.update');
-    Route::get('/view/{id}',[AdminController::class,'adminview'])->name('Admin.view');
+            Route::get('/', [AdminController::class, 'admin'])->name('Admin_List');
+            Route::get('/form', [AdminController::class, 'adminform'])->name('Admin.form');
+            Route::post('/store', [AdminController::class, 'adminstore'])->name('Admin.store');
+            Route::get('/delete/{id}', [AdminController::class, 'admindelete'])->name('Admin.delete');
+            Route::get('/edit/{id}', [AdminController::class, 'adminedit'])->name('Admin.edit');
+            Route::put('/update/{id}', [AdminController::class, 'adminupdate'])->name('Admin.update');
+            Route::get('/view/{id}', [AdminController::class, 'adminview'])->name('Admin.view');
 
 
-    Route::get('/category/list',[CategoryController::class,'list'])->name('Category.list');
-    Route::get('/category/form',[CategoryController::class,'form'])->name('Category.form');
-    Route::post('/category/store',[CategoryController::class,'store'])->name('Category.store');
-    
-    Route::get('/customer/list',[CustomerController::class,'list'])->name('Customer.list');
-    Route::get('/customer/form',[CustomerController::class,'form'])->name('Customer.form');
-    Route::post('/customer/store',[CustomerController::class,'store'])->name('Customer.store');
 
-    Route::get('/menu/list',[MenuController::class,'list'])->name('Menu.list');
-    Route::get('/menu/form',[MenuController::class,'form'])->name('Menu.form');
-    Route::post('/menu/store',[MenuController::class,'store'])->name('Menu.store');
-    Route::get('/delete/{id}',[MenuController::class,'menudelete'])->name('Menu.delete');
-    Route::get('/edit/{id}',[MenuController::class,'menuedit'])->name('Menu.edit');
-    Route::put('/update/{id}',[MenuController::class,'menuupdate'])->name('Menu.update');
-    Route::get('/view/{id}',[MenuController::class,'menuview'])->name('Menu.view');
+            Route::get('/category/list', [CategoryController::class, 'list'])->name('Category.list');
+            Route::get('/category/form', [CategoryController::class, 'form'])->name('Category.form');
+            Route::post('/category/store', [CategoryController::class, 'store'])->name('Category.store');
 
-    Route::get('/order/list',[OrderController::class,'list'])->name('Order.list');
-    Route::get('/order/form',[OrderController::class,'form'])->name('Order.form');
-    Route::post('/order/store',[OrderController::class,'store'])->name('Order.store');
+            Route::get('/customer/list', [CustomerController::class, 'list'])->name('Customer.list');
+            Route::get('/customer/form', [CustomerController::class, 'form'])->name('Customer.form');
+            Route::post('/customer/store', [CustomerController::class, 'store'])->name('Customer.store');
 
-    Route::get('/payment/list',[PaymentController::class,'list'])->name('Payment.list');
-    Route::get('/payment/form',[PaymentController::class,'form'])->name('Payment.form');
-    Route::post('/payment/store',[PaymentController::class,'store'])->name('Payment.store');
+            Route::get('/menu/list', [MenuController::class, 'list'])->name('Menu.list');
+            Route::get('/menu/form', [MenuController::class, 'form'])->name('Menu.form');
+            Route::post('/menu/store', [MenuController::class, 'store'])->name('Menu.store');
+            Route::get('/menu/delete/{id}', [MenuController::class, 'menudelete'])->name('Menu.delete');
+           
+
+            Route::get('/order/list', [OrderController::class, 'list'])->name('Order.list');
+            Route::post('/order/store', [OrderController::class, 'store'])->name('Order.store');
+
+            Route::get('/payment/list', [PaymentController::class, 'list'])->name('Payment.list');
+            Route::post('/payment/store', [PaymentController::class, 'store'])->name('Payment.store');
+            Route::get('/feedback', [CategoryController::class, 'feedbacklist'])->name('feedback.list');
+        });
+    });
 });
-});
-});
-

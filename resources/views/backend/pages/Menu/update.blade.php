@@ -8,16 +8,9 @@
    
   <div class="form-group">
     <label for="exampleFormControlInput1">User Name</label>
-    <input name="user_name" value="{{$admin->name}}" type="text" class="form-control" id="" placeholder="write user name">
+    <input name="user_name" value="{{$menu->name}}" type="text" class="form-control" id="" placeholder="write user name">
   </div>
-  <div class="form-group">
-    <label for="exampleFormControlInput2">Role</label><br>
-    <select name="role" value="{{$admin->role}}" type="text" class="form-control">
-      <option>Select Your Role</option>
-      <option value="admin">Admin</option>
-      <option value="manager">Manager</option>
-    </select>
-  </div>
+ 
   <div class="form-group">
     <label for="exampleFormControlinput3">E-mail</label>
     <input name="email" value="{{$admin->email}}" type="email"class="form-control" id="" placeholder="write email">

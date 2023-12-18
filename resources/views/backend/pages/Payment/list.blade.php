@@ -1,8 +1,7 @@
 @extends('backend.master')
 
 @section('content')
-
-<a href="{{route('Payment.form')}}" type="button" class="btn btn-info">Add Payment</a>
+<h1>Payment Details</h1>
 
 <div class="container">
 <table class="table">
@@ -20,11 +19,28 @@
 
     <tr>
       <th scope="row">1</th>
-      <td>abc</td>
-      <td>Opq</td>
-      <td>@mdo</td>
+      <td>07</td>
+      <td>05</td>
+      <td>1020.BDT</td>
+      <td>COD</td>
+      <td>Paid</td>
     </tr>
-    
+    <tr>
+      <th scope="row">2</th>
+      <td>10</td>
+      <td>08</td>
+      <td>1240.BDT</td>
+      <td>PO</td>
+      <td>Paid</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>10</td>
+      <td>09</td>
+      <td>1360.BDT</td>
+      <td>COD</td>
+      <td>Paid</td>
+    </tr>
   </tbody>
 </table>
 </div>
