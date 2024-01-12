@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
@@ -32,9 +33,10 @@ class AdminController extends Controller
 
 
 
-        User::create([
+       Admin::create([
             'name' => $request->user_name,
             'role' => $request->role,
+            'phone' => $request->phone,
             'email' => $request->email,
             'photo' => $file_name,
             'password' => $request->password,

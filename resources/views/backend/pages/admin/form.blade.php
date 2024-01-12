@@ -24,6 +24,12 @@
     </select>
   </div>
   <div class="form-group">
+    <label for="exampleFormControlinput1">phone</label>
+    <input name="phone" type="number"class="form-control" id="" placeholder="write nmuber">
+     
+    </select>
+  </div>
+  <div class="form-group">
     <label for="exampleFormControlinput2">Password</label>
     <input name="password" type="password"class="form-control" id="">
     </select>

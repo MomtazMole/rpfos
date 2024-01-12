@@ -18,14 +18,6 @@
                <li class="nav-item active">
                   <a class="nav-link" href="{{route('Menu.List')}}">Menu</a>
                </li>
-               <div class="form-group">
-                  <select class="form-control">
-                     <option>Category</option>
-                     @foreach($headerCategory as $item)
-                     <option value="admin">Admin</option>
-                     @endforeach
-                  </select>
-               </div>
                <li class="nav-item">
                   <a class="nav-link" href="{{route('About.list')}}">About</a>
                </li>

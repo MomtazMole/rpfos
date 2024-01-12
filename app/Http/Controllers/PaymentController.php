@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -9,7 +10,8 @@ class PaymentController extends Controller
     public function list()
     {
         //dd('hello');
-        return view('backend.Pages.payment.list');
+        $payment=Order::all();
+        return view('backend.Pages.payment.list',compact('payment'));
     }
    
     public function store(Request $request)

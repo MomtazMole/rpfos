@@ -6,14 +6,14 @@
             <div class="carousel-item active">
                <div class="row col-md-12">
                   <div class="col-md-6">
-                     <div class="banner_img fluid" style=" height: 1000px;width: 1200px;"><img width="10000px" height="1200px" src="https://i0.wp.com/blog.petpooja.com/wp-content/uploads/2021/10/cultural-cuisine.jpg?resize=696%2C385&ssl=1"></div>
+                     <div class="banner_img fluid" style=" height: 1000px;width: 1200px;"><img width="10000px" height="1200px" src="https://e0.pxfuel.com/wallpapers/52/830/desktop-wallpaper-food-background-food-food-recipes-food-menu-greek-food.jpg"></div>
                   </div>
                   <div class="col-md-6">
                      <div class="banner_taital_main">
                         <h1 class="banner_taital text-success ">Food Hunter</h1>
                         <h5 class="tasty_text">Good Food Good Mood</h5>
                         <div class="btn_main">
-                           <div class="about_bt"><a href="#">About Us</a></div>
+                           <div class="about_bt"><a href="{{route('About.us.list')}}">About Us</a></div>
                            <div class="callnow_bt active"><a href="#">Call Now</a></div>
                         </div>
                      </div>

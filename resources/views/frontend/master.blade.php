@@ -49,6 +49,9 @@
 
       @yield('content')
 
+      
+      @yield('category')
+
    </main>
 
 

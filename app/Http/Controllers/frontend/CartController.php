@@ -98,9 +98,12 @@ class CartController extends Controller
             'email' => $request->email,
             'order_note' => $request->order_note,
             'total_price' => $total,
+            'payment_status'=>'pending',
+            'transaction_id'=>date('YmdHis'),
+            'delivery_status'=>'pending',
             'payment_method' => $request->payment_method,
         ]);
-        //dd($request);
+     
         $cart = session()->get('vcart');
         foreach ($cart as $item)
             Orderdetails::create([
@@ -108,6 +111,7 @@ class CartController extends Controller
                 'menu_id' => $item['id'],
                 'quantity' => $item['quantity'],
                 'subtotal' => $item['subtotal'],
+                'total_price' => $order->total_price,
             ]);
         // dd($request);
         session()->forget('vcart');
@@ -121,9 +125,9 @@ class CartController extends Controller
         # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
         // dd($payment);
         $post_data = array();
-        $post_data['total_amount'] = (int)$payment->total_price; # You cant not pay less than 10
+        $post_data['total_amount'] = $payment->total_price; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
-        $post_data['tran_id'] = uniqid(); // tran_id must be unique
+        $post_data['tran_id'] = $payment->transaction_id; // tran_id must be unique
 
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = 'Customer Name';

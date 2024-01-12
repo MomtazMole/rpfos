@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('menu_id')->constrained();
             $table->string('quantity');
             $table->double('subtotal');
+            $table->double('total_price');
             $table->timestamps();
         });
     }

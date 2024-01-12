@@ -10,7 +10,7 @@ class MenuController extends Controller
 {
     public function list()
     {
-        $menu = Menu::all();
+        $menu = Menu::with('category')->get();
         //dd('hello');
         return view('backend.Pages.menu.list', compact('menu'));
     }

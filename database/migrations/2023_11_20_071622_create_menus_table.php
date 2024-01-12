@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->constrained();
             $table->string('photo');
             $table->string('name');
-            $table->foreignId('category_id');
             $table->double('price');
             $table->string('description');
             $table->timestamps();

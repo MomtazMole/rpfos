@@ -30,7 +30,7 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
 
 
-        $login = auth()->attempt($credentials);
+        $login = auth()->guard('admin')->attempt($credentials);
         if($login) {
             // dd('hello');
             return redirect()->route('back.home');

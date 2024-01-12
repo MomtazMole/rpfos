@@ -11,7 +11,7 @@ class MenuController extends Controller
 {
     public function menu(){
         // dd('Hello Menu');
-       $Menu=Menu::all();
+       $Menu=Menu::with('category')->get();
         return view('frontend.pages.menu.menu', compact('Menu'));
     }
 
@@ -26,5 +26,14 @@ class MenuController extends Controller
 
         return view('frontend.pages.menu.menu',compact('Menu'));
     }
+
+
+    public function menuundercategory($category_id){
+
+        $category=Menu::where('category_id',$category_id)->get();
+        return view('frontend.pages.category.category',compact('category'));
+    }
+    
+
     
 }

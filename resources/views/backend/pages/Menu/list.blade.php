@@ -1,11 +1,12 @@
 @extends('backend.master')
 
 @section('content')
-<div>
-  <h1> Menu List</h1>
-  <a href="{{route('Menu.form')}}" type="button" class="btn btn-info">Add Menu</a>
-</div>
-<div class="container">
+
+<div class="container p-4">
+  <div>
+    <h1> Menu List</h1>
+    <a href="{{route('Menu.form')}}" type="button" class="btn btn-info">Add Menu</a>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -22,13 +23,12 @@
       @foreach($menu as $key=>$item)
       <tr>
         <th scope="row">{{$key+1}}</th>
-        <td>{{$item->photo}}</td>
+        <td><img height="100px" width="100px" src="{{url('uploads/'.$item->photo)}}" alt=""></td>
         <td>{{$item->name}}</td>
-        <td>{{$item->category_name}}</td>
+        <td>{{$item->category->category}}</td>
         <td>{{$item->description}}</td>
         <td>{{$item->price}}</td>
         <td>
-          dd($menu);
           <a href="{{route('Menu.delete',$item->id)}}" type="button" class="btn btn-danger">delete</a>
         </td>
       </tr>

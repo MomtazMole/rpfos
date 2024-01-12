@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -10,7 +11,8 @@ class FrontendHomeController extends Controller
     public function home()
     {
         //dd('hello');
-        return view('frontend.pages.home.home');
+        $category=Category::all();
+        return view('frontend.pages.home.home',compact('category'));
     }
     public function loginForm()
     {
@@ -52,6 +54,10 @@ class FrontendHomeController extends Controller
         //dd('contact');
         return view('frontend.pages.home.contact');
     }
-    
+    public function aboutus()
+    {
+        //dd('aboutus');
+        return view('frontend.pages.home.aboutus');
+    }
     
 }
